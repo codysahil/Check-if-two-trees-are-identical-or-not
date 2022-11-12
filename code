@@ -1,0 +1,52 @@
+#include<iostream>
+#include<algorithm>
+#include<math.h>
+using namespace std;
+class Node {
+public:
+	int data;
+	Node* left, * right;
+};
+Node* newwnode(int data) {
+	Node* temp = new Node;
+	temp->data = data;
+	temp->left = temp->right = NULL;
+	return temp;
+}
+void printtree(Node* node) {
+	if (node == NULL) {
+		return;
+	}
+	cout << node->data << " ";
+	printtree(node->left);
+	printtree(node->right);
+}
+
+bool isSameTree(Node *p, Node *q){
+    if(p==NULL||q==NULL){
+        return(p==q);
+    }
+    return(p->data==q->data)&&isSameTree(p->left,q->left)&&isSameTree(p->right,q->right);
+}
+int main() {
+	Node* root = newwnode(1);
+	root->left = newwnode(2);
+	root->right = newwnode(10);
+	root->left->left = newwnode(50);
+	root->left->right = newwnode(100);
+	root->left->left->left = newwnode(500);
+	printtree(root);
+	cout << endl;
+	
+	cout<<endl;
+Node* rooot = newwnode(1);
+	rooot->left = newwnode(2);
+	rooot->right = newwnode(10);
+	rooot->left->left = newwnode(50);
+	rooot->left->right = newwnode(100);
+	rooot->left->left->left = newwnode(500);
+	printtree(rooot);
+	cout << endl;
+	return 0;
+cout<<isSameTree(root,rooot);
+}
